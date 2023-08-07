@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using PW.Persistence.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,11 @@ namespace PW.Persistence.Utilities
     {
         public static void AddPersistenceService(this IServiceCollection services)
         {
+            #region Database Context
 
+            services.AddDbContext<PWDbContext>(options => options.UseSqlServer(Configuration.ConnectionString));
+
+            #endregion
         }
     }
 }
