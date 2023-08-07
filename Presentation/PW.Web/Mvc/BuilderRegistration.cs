@@ -1,9 +1,14 @@
-﻿namespace PW.Web.Mvc
+﻿using PW.Persistence.Seeds;
+
+namespace PW.Web.Mvc
 {
     public static class BuilderRegistration
     {
         public static void AddBaseBuilder(this WebApplication application)
         {
+            //Database migrations and seeds
+            DbInitializer.Initialize(application);
+
             application.UseHttpsRedirection();
             application.UseStaticFiles();
         }
