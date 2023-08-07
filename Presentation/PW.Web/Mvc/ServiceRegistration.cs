@@ -14,8 +14,9 @@ namespace PW.Web.Mvc
         public static void AddLayerServices(this IServiceCollection services)
         {
             services.AddApplicationService();
-            services.AddInfrastructreService();
             services.AddPersistenceService();
+            services.AddInfrastructreService();
+            
         }
     }
 }
