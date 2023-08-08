@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PW.Domain.Entities.Membership;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,13 @@ namespace PW.Persistence.Contexts
         {
             
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PWDbContext).Assembly);
+            base.OnModelCreating(modelBuilder);
+        }
+
+        DbSet<User> Users { get; set; }
     }
 }
