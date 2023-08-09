@@ -2,9 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using PW.Application.Interfaces.Repositories;
 using PW.Application.Interfaces.Repositories.UnitOfWork;
+using PW.Application.Interfaces.Services.Membership;
 using PW.Persistence.Contexts;
 using PW.Persistence.Repositories;
 using PW.Persistence.Repositories.UnitOfWork;
+using PW.Persistence.Services.Membership;
 
 namespace PW.Persistence.Utilities
 {
@@ -21,6 +23,12 @@ namespace PW.Persistence.Utilities
             #region UnitOfWork       
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            #endregion
+
+            #region Services
+
+            services.AddTransient<IUserService, UserService>();
+
             #endregion
         }
     }
