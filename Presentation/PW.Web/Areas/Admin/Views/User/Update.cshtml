@@ -1,0 +1,26 @@
+﻿@model UserUpdateViewModel
+
+<form asp-action="Update" asp-controller="User">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label for="exampleInputEmail1">First Name</label>
+        <input type="text" class="form-control" asp-for="FirstName" placeholder="Enter First Name">
+    </div>
+    <div class="form-group">
+        <label for="LastName">Last Name</label>
+        <input type="text" class="form-control" asp-for="LastName" placeholder="Enter Last Name">
+    </div>
+    <div class="form-group">
+        <label for="LastName">Email</label>
+        <input type="email" class="form-control" asp-for="Email" placeholder="Enter Email">
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" asp-for="Password" class="form-control" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label>Update password?</label>
+        <input type="checkbox" asp-for="UpdatePassword">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

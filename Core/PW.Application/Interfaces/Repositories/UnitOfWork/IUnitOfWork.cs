@@ -12,6 +12,7 @@ namespace PW.Application.Interfaces.Repositories.UnitOfWork
     {
         IRepository<T> GetRepository<T>() where T : BaseEntity;
         Task<int> SaveChangesAsync();
+        int SaveChanges();
         Task<int> ExecuteSqlCommandAsync(string sql, params object[] parameters);
     }
 }

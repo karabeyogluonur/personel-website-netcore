@@ -48,5 +48,10 @@ namespace PW.Persistence.Repositories.UnitOfWork
         {
             return await _dbContext.SaveChangesAsync();
         }
+
+        public int SaveChanges()
+        {
+            return _dbContext.SaveChanges();
+        }
     }
 }

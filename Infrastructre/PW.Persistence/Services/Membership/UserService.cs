@@ -59,8 +59,7 @@ namespace PW.Persistence.Services.Membership
         public async void Update(User user)
         {
             _userRepository.Update(user);
-
-            await _unitOfWork.SaveChangesAsync();
+            _unitOfWork.SaveChanges();
         }
     }
 }

@@ -50,5 +50,28 @@ namespace PW.Web.Areas.Admin.Controllers
 
             return RedirectToAction("List","User");
         }
+        public async Task<IActionResult> Update(int id)
+        {
+            User user = await _userService.GetByIdAsync(id);
+            UserUpdateViewModel userUpdateViewModel = _mapper.Map<UserUpdateViewModel>(user);
+            return View(userUpdateViewModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(UserUpdateViewModel userUpdateViewModel)
+        {
+            //FluentValidation will be added.
+            if (!ModelState.IsValid)
+                return View(userUpdateViewModel);
+
+            User user = await _userService.GetByIdAsync(userUpdateViewModel.Id);
+            user = _mapper.Map(userUpdateViewModel,user);
+
+            if (userUpdateViewModel.UpdatePassword)
+                user.PasswordHash = PasswordHashHelper.HashPassword(userUpdateViewModel.Password);
+
+            _userService.Update(user);
+
+            return RedirectToAction("List", "User");
+        }
     }
 }
