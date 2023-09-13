@@ -21,9 +21,10 @@ namespace PW.Persistence.Services.Membership
         }
         public async void Delete(User user)
         {
-            _userRepository.Delete(user);
+            user.Deleted = true;
+            user.Email = user.Email + "--DELETED";
 
-            await _unitOfWork.SaveChangesAsync();
+            Update(user);
         }
 
         public async Task<List<User>> GetAllAsync(int pageIndex = 0, int pageSize = int.MaxValue, bool showDeleted = false, bool disableTracking = true)
@@ -48,8 +49,10 @@ namespace PW.Persistence.Services.Membership
 
         public async Task InsertAsync(User user)
         {
-            await _userRepository.InsertAsync(user);
+            user.CreatedAt = DateTime.Now;
+            user.Deleted = false;
 
+            await _userRepository.InsertAsync(user);
             await _unitOfWork.SaveChangesAsync();
         }
 

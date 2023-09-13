@@ -14,6 +14,7 @@ namespace PW.Application.Mappers.AutoMapper
         public AutoMapperProfile()
         {
             CreateMap<User, UserListViewModel>().ReverseMap();
+            CreateMap<User, UserCreateViewModel>().ReverseMap();
         }
     }
 }
